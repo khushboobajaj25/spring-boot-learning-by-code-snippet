@@ -16,10 +16,12 @@ public class ProductService {
     private ProductRepository productRepository;
     
     public Product addProduct(Product product){
+        
         return productRepository.save(product);
     }
 
     public Optional<Product> findById(Integer id){
+        System.out.println("findProductById");
         return productRepository.findById(id);
     }
 

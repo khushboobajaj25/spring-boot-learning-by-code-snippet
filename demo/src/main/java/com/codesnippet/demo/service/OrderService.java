@@ -1,5 +1,8 @@
 package com.codesnippet.demo.service;
 
+import org.slf4j.*;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import jakarta.transaction.Transactional;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
+
+      private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
     @Autowired
     private InventoryRepository inventoryRepository;
@@ -32,6 +37,7 @@ public class OrderService {
     public void placeOrder(Integer inventoryId,int quantity){
         // Fetch inventory by Id
 
+      
         Inventory inventory = inventoryRepository.findById(inventoryId)
         .orElseThrow(()-> new RuntimeException("Stock not found"));
 

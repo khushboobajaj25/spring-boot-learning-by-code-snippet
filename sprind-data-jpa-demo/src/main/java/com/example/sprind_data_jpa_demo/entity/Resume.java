@@ -1,10 +1,12 @@
 package com.example.sprind_data_jpa_demo.entity;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,19 +16,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Applicant {
+public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long Id;
 
-    private String name;
+    String content;
 
-    private String email;
+    @OneToOne // tell jpa this particular entity has one to one with applicant
+    @JoinColumn(name = "applicantId",nullable = false) // adding a foreign key to the entity
+    @JsonIgnore
+    private Applicant applicant;
 
-    private String phoneNumber;
-
-    private String status;
-
-    @OneToOne(mappedBy = "applicant",cascade = CascadeType.ALL)
-    private Resume resume;
 }

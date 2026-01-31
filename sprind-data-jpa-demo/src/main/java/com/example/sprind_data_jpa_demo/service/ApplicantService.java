@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.sprind_data_jpa_demo.entity.Applicant;
+import com.example.sprind_data_jpa_demo.entity.Resume;
 import com.example.sprind_data_jpa_demo.repository.ApplicantJpaRepository;
 import com.example.sprind_data_jpa_demo.repository.ApplicantPagingAndSortingRepository;
 import com.example.sprind_data_jpa_demo.repository.ApplicantRepository;
@@ -35,6 +36,11 @@ public class ApplicantService {
 
     public Applicant saveApplicant(Applicant applicant) {
         // Implementation here
+        Resume resume = applicant.getResume();
+        if(resume!= null){
+
+            resume.setApplicant(applicant);
+        }
         return applicantRepository.save(applicant);
     }
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/applicants")
+@RequestMapping("/api/applicants")
 public class ApplicantController {
     @Autowired
     ApplicantService applicantService;
